@@ -133,9 +133,10 @@ $ python3 train.py --model_def config/yolov3-custom.cfg --data_config config/cus
 Add `--pretrained_weights weights/darknet53.conv.74` to train using a backend pretrained on ImageNet.
 
 #### Detect_video
-To detect video from we cam code is given,
+To detect video from web cam code is given,
 it is edited with help of https://github.com/AyushExel/Detectx-Yolo-V3
 Note: the model weight(.pth) file should be in PyTorch-YOLOv3
+The python file utilises 'utill' file
 
 ```
 $ python3 detect_video.py
