@@ -65,6 +65,9 @@ $ python3 train.py --data_config config/coco.data  --pretrained_weights weights/
 
 #### Training log
 ```
+For this refer forked git https://github.com/eriklindernoren/PyTorch-YOLOv3
+```
+```
 ---- [Epoch 7/100, Batch 7300/14658] ----
 +------------+--------------+--------------+--------------+
 | Metrics    | YOLO Layer 0 | YOLO Layer 1 | YOLO Layer 2 |
@@ -129,6 +132,14 @@ $ python3 train.py --model_def config/yolov3-custom.cfg --data_config config/cus
 
 Add `--pretrained_weights weights/darknet53.conv.74` to train using a backend pretrained on ImageNet.
 
+#### Detect_video
+To detect video from we cam code is given,
+it is edited with help of https://github.com/AyushExel/Detectx-Yolo-V3
+Note: the model weight(.pth) file should be in PyTorch-YOLOv3
+
+```
+$ python3 detect_video.py
+```
 
 ## Credit
 
@@ -158,3 +169,5 @@ https://pjreddie.com/yolo/.
   year={2018}
 }
 ```
+
+
