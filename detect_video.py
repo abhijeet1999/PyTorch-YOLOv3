@@ -55,10 +55,10 @@ def arg_parse():
     parser.add_argument("--nms_thresh", dest = "nms_thresh", help = "NMS Threshhold", default = 0.4)
     parser.add_argument("--cfg", dest = 'cfgfile', help = 
                         "Config file",
-                        default = "config/yolov3-custom.cfg", type = str)
+                        default = "config/yolov3.cfg", type = str)
     parser.add_argument("--weights", dest = 'weightsfile', help = 
-                        "weightsfile",
-                        default = "213.pth", type = str)
+                        "weightsfile and you have to specify ur weight file path",
+                        default = "trainedmodel.pth", type = str)
     parser.add_argument("--reso", dest = 'reso', help = 
                         "Input resolution of the network. Increase to increase accuracy. Decrease to increase speed",
                         default = "316", type = str)
@@ -87,7 +87,7 @@ if __name__ == '__main__':
     model = Darknet(args.cfgfile).to(CUDA)
     model.load_state_dict(torch.load(args.weightsfile,map_location= CUDA ))
     print("Network loaded")
-    classes = load_classes('data/custom/classes.names')
+    classes = load_classes('data/custom/classes.names') # specify  the path of your class names
     colors = pkl.load(open("pallete", "rb"))
     model.hyperparams["height"] = args.reso
     inp_dim = int(model.hyperparams["height"])
@@ -99,8 +99,8 @@ if __name__ == '__main__':
     model.eval()
     
     videofile = args.video
-    
-    cap = cv2.VideoCapture(0)
+    #well this made for web cam for now thats why it is 0
+    cap = cv2.VideoCapture(0) #cv2.VideoCapture(videofile)
     
     assert cap.isOpened(), 'Cannot capture source'
     
@@ -145,7 +145,7 @@ if __name__ == '__main__':
             
             cv2.imshow("frame", orig_im)
             key = cv2.waitKey(1)
-            if key & 0xFF == ord('x'):
+            if key & 0xFF == ord('x'): # press x to exit
                 break
         else:
             break
